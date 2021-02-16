@@ -173,7 +173,7 @@ function tvToSell(){
   }
   return (tvStock - tvSold);
 }
-tvToSell()
+const tvsInStock = tvToSell()
 
 //Opdracht 1b: Zorg ervoor dat dit aantal in het rood wordt weergegeven op de pagina
 
@@ -198,11 +198,34 @@ const ambiLightTvs = inventory.filter((television) => {
 console.log(ambiLightTvs)
 
 // Opdracht 2d: Schrijf een functie die alle tv's van laagste naar hoogste prijs sorteert.
-const tvPrice = inventory.sort((a, b) => {
+const tvPriceSorted = inventory.sort((a, b) => {
   return a.price - b.price;
 });
-console.log(tvPrice)
+console.log(tvPriceSorted)
 
 //Opdracht 3a: Wat is onze doel-opbrengst? Bereken wat de totale opbrengst is,
 //als we alle exemplaren van ieder type zouden verkopen. Geef dit in het blauw weer op de pagina.
 
+function totalRevenue() {
+  let count = 0;
+  let amount = 0;
+  for (let i = 0; i < inventory.length; i++) {
+    count += inventory[i].price;
+  }
+  return (count * tvsInStock);
+}
+const revenue = totalRevenue()
+console.log(revenue)
+
+//Opdracht 3b: Hoeveel hebben we tot nu toe verdient?
+// Bereken hoeveel we tot nu toe verdient hebben met het aantal verkochte tv's. Geef dit weer in het groen weer op de pagina
+
+function soldSoFar () {
+  let count = 0;
+  for (let i = 0; i < inventory.length; i++) {
+    count += (inventory[i].sold * inventory[i].price);
+  }
+  return count;
+}
+const soldTvs = soldSoFar()
+console.log(soldTvs)
