@@ -161,3 +161,48 @@ const inventory = [
     sold: 8,
   },
 ];
+
+// Opdracht 1a: Hoeveel exemplaren moeten we nog verkopen? Schrijf een functie die dit berekent.
+
+function tvToSell(){
+  let tvStock = 0;
+  let tvSold = 0
+  for (let i = 0; i < inventory.length; i++) {
+    tvStock += inventory[i].originalStock;
+    tvSold += inventory[i].sold;
+  }
+  return (tvStock - tvSold);
+}
+tvToSell()
+
+//Opdracht 1b: Zorg ervoor dat dit aantal in het rood wordt weergegeven op de pagina
+
+//Opdracht 2a: Gebruik een array-methode om een array te maken met alle tv-type namen.
+const tvType = inventory.map((television) => {
+  return television.type;
+});
+console.log(tvType)
+
+//Opdracht 2b: Gebruik een array-methode om alle tv's te verzamelen
+//(de hele objecten) die volledig uitverkocht zijn.
+const soldOutTvs = inventory.filter((television) => {
+  return television.originalStock === television.sold
+});
+console.log(soldOutTvs)
+
+//Opdracht 2c: Gebruik een array-methode om alle tv's te verzamelen (de hele objecten)
+// die over AmbiLight beschikken.
+const ambiLightTvs = inventory.filter((television) => {
+  return television.options.ambiLight;
+});
+console.log(ambiLightTvs)
+
+// Opdracht 2d: Schrijf een functie die alle tv's van laagste naar hoogste prijs sorteert.
+const tvPrice = inventory.sort((a, b) => {
+  return a.price - b.price;
+});
+console.log(tvPrice)
+
+//Opdracht 3a: Wat is onze doel-opbrengst? Bereken wat de totale opbrengst is,
+//als we alle exemplaren van ieder type zouden verkopen. Geef dit in het blauw weer op de pagina.
+
