@@ -208,11 +208,10 @@ console.log(tvPriceSorted)
 
 function totalRevenue() {
   let count = 0;
-  let amount = 0;
   for (let i = 0; i < inventory.length; i++) {
-    count += inventory[i].price;
+    count += inventory[i].price * inventory[i].originalStock;
   }
-  return (count * tvsInStock);
+  return `€ ${count}`;
 }
 const revenue = totalRevenue()
 console.log(revenue)
@@ -225,7 +224,42 @@ function soldSoFar () {
   for (let i = 0; i < inventory.length; i++) {
     count += (inventory[i].sold * inventory[i].price);
   }
-  return count;
+  return `€ ${count}`;
 }
 const soldTvs = soldSoFar()
 console.log(soldTvs)
+
+//DOM CODE T/M OPDRACHT 3
+const tvsToSell = document.getElementById("numberToSell");
+tvsToSell.textContent = tvsInStock;
+const targetOfRevenue = document.getElementById("revenue");
+targetOfRevenue.textContent = revenue;
+const sold = document.getElementById("sold");
+sold.textContent = soldTvs
+
+
+//opdracht 4: Geef de type-namen van twee tv's weer op de pagina. Welke tv's dat precies zijn, maakt niet zoveel uit.
+//Voor nu betekent dit dat je het appenden van de nodes twee keer moet uitschrijven, dat is niet erg!
+
+const tv1 = inventory.find((tv) =>{
+  return tv.type === '55PUS7805';
+})
+console.log(tv1)
+
+const tv2 = inventory.find((tv) =>{
+  return tv.type === '43HAK6152';
+})
+console.log(tv2)
+
+//DOM BIJ OPDRACHT 4
+const listOfTv = document.getElementById('list');
+const firstTv = document.createElement('li');
+firstTv.setAttribute('class', 'tv-item');
+firstTv.textContent = tv1.type;
+const secTv = document.createElement('li');
+secTv.setAttribute('class', 'tv-item');
+secTv.textContent = tv2.type;
+listOfTv.appendChild(firstTv)
+listOfTv.appendChild(secTv)
+
+
