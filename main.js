@@ -245,7 +245,7 @@ function tvTypes(tvType) {
   return `${tvType.type}`;
 }
 const typeTV = tvTypes(inventory[3]);
-console.log(typeTV)
+// console.log(typeTV)
 
 //Opdracht 5a: Zorg ervoor dat er een string wordt gegenereerd voor de naam van een tv.
 // Maak een functie die één tv-object als parameter verwacht en de naam op de volgende manier samenvoegt:
@@ -255,8 +255,8 @@ console.log(typeTV)
 function tvNames(tvName) {
   return `${tvName.brand} ${tvName.type} - ${tvName.name}`
 }
-const nameTv = tvNames(inventory[3]);
-console.log(nameTv)
+// const nameTv = tvNames(inventory[3]);
+// // console.log(nameTv)
 
 //Opdracht 5b: Zorg ervoor dat de prijs van een tv netjes geformat wordt.
 //Maak een functie die één tv-prijs als parameter verwacht (zoals 379) en daar
@@ -266,7 +266,7 @@ function tvPrices(tvPrice) {
   return `€ ${tvPrice.price},-`
 }
 const priceTv = tvPrices(inventory[3])
-console.log(priceTv)
+// console.log(priceTv)
 
 //Opdracht 5c: Zorg ervoor dat er een string wordt gegenereerd voor alle beschikbare schermgroottes van één tv in zowel
 //inches als cm Maak een functie die één screen-sizes array verwacht en de groottes op de volgende manier samenvoegt:
@@ -304,8 +304,8 @@ function screenSizesTV(screenSize) {
   }
   return allSizes;
 }
-const sizeTV = screenSizesTV(inventory[3])
-console.log(sizeTV)
+// const sizeTV = screenSizesTV(inventory[3])
+// console.log(sizeTV)
 
 //Opdracht 5d: Zorg ervoor de informatie van één van de twee tv's zoals het voorbeeld wordt weergegeven op de pagina.
 //Gebruik hiervoor de functies die je hebt gemaakt in opdracht 5a, 5b en 5c.
@@ -314,11 +314,32 @@ console.log(sizeTV)
 // €379,-
 //     43 inch (109 cm) | 50 inch (127 cm) | 58 inch (147 cm)
 
-//DOM BIJ OPDRACHT 4
-const listOfTv = document.getElementById('list');
-const firstTv = document.createElement('li');
-firstTv.setAttribute('class', 'tv-item');
-firstTv.setAttribute('style', 'white-space:pre');
-firstTv.textContent = `${nameTv} \n ${priceTv}  \n ${sizeTV}`;
-listOfTv.appendChild(firstTv)
+//DOM BIJ OPDRACHT 4 en 5
+// const listOfTv = document.getElementById('list');
+// const firstTv = document.createElement('li');
+// firstTv.setAttribute('class', 'tv-item');
+// firstTv.setAttribute('style', 'white-space:pre');
+// firstTv.textContent = `${nameTv} \n ${priceTv}  \n ${sizeTV}`;
+// listOfTv.appendChild(firstTv)
 
+//Opdracht 5e: Schrijf een functie die ALLE tv's weergeeft op de pagina zoals in het voorbeeld.
+// Dit wil je natuurlijk niet acht keer opnieuw schrijven, want nu zijn het 8 tv's, maar in de toekomst misschien wel 200!
+// Gebruik in deze functie de voorgaande functies die je hebt geschreven, om onderdelen van de data te formatten.
+// Deze "tv-generator-functie" verwacht één parameter: de volledige array met tv-objecten. Vergeet 'm niet aan te roepen!
+
+function allTVs() {
+  for (let i = 0; i < inventory.length; i++) {
+    const elementName = `${tvNames(inventory[i])}`;
+    const elementPrice = `${tvPrices(inventory[i])}`;
+    const elementSize = `${screenSizesTV(inventory[i])}`;
+
+    //DOM
+    const displayAll = document.getElementById('list')
+    const element = document.createElement('li')
+    element.setAttribute('class', 'tv-item')
+    // element.setAttribute('style', 'white-space:pre');
+    element.textContent = `${elementName} \n ${elementPrice} \n ${elementSize}`;
+    displayAll.appendChild(element)
+  }
+}
+allTVs(inventory)
